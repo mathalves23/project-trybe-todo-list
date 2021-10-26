@@ -50,3 +50,7 @@ li {
   margin-left: 28px;
   font-size: 24px;
 }
+
+.selected {
+  background-color: rgb(128, 128, 128);
+}
