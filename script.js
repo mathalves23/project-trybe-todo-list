@@ -2,6 +2,7 @@ const inputText = document.querySelector('#texto-tarefa'); // Input
 const button = document.querySelector('#criar-tarefa'); // Botão que cria tarefa
 const listaTarefas = document.querySelector('#lista-tarefas'); // OL
 const apagaTudo = document.getElementById('apaga-tudo'); // Botão que apaga tudo
+const removeFinalizados = document.getElementById('remover-finalizados'); // Botão que remove os finalizados
 
 // função adiciona item na lista
 function addItem() {
@@ -39,3 +40,12 @@ listaTarefas.addEventListener('dblclick', function(event) {
     elementClick.className = 'completed';
   }
 });
+
+// Função que remove os finalizados
+function removeDone() {
+  const completedItens = document.querySelectorAll('.completed');
+  for (let index = 0; index < completedItens.length; index += 1) {
+    listaTarefas.removeChild(completedItens[index]);
+  }
+}
+removeFinalizados.addEventListener('click', removeDone);
