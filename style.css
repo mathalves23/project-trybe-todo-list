@@ -62,3 +62,18 @@ li {
   border-radius: 20px;
   cursor: pointer;
 }
+
+#remover-finalizados{
+  display: inline-block;
+  background-color: rgb(22, 108, 221);
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  width: 17%;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}

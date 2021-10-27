@@ -1,9 +1,7 @@
-const inputText = document.querySelector('#texto-tarefa');
-const button = document.querySelector('#criar-tarefa');
-const listaTarefas = document.querySelector('#lista-tarefas');
-const apagaTudo = document.getElementById('apaga-tudo');
-// const btnRemoveFinalizados = document.querySelector('#remover-finalizados');
-// const salvar = document.querySelector('#salvar-tarefas');
+const inputText = document.querySelector('#texto-tarefa'); // Input
+const button = document.querySelector('#criar-tarefa'); // Botão que cria tarefa
+const listaTarefas = document.querySelector('#lista-tarefas'); // OL
+const apagaTudo = document.getElementById('apaga-tudo'); // Botão que apaga tudo
 
 // função adiciona item na lista
 function addItem() {
@@ -12,7 +10,7 @@ function addItem() {
   newElement.className = 'selected';
   listaTarefas.appendChild(newElement);
   inputText.value = '';
-}; // Source: https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript
+} // Source: https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript
 button.addEventListener('click', addItem);
 
 // função adiciona cor no item selecionado
@@ -26,7 +24,18 @@ function selectItem(event) {
 }
 listaTarefas.addEventListener('click', selectItem);
 
-// Botão Apaga tudo:
+// Botão que apaga tudo:
 apagaTudo.addEventListener('click', function () {
   listaTarefas.innerHTML = '';
+});
+
+// Função que risca os completos
+listaTarefas.addEventListener('dblclick', function(event) {
+  const elementClick = event.target;
+  if (elementClick.className === 'completed') {
+    event.target.classList.remove('completed');
+  } else {
+    listaTarefas.classList = '';
+    elementClick.className = 'completed';
+  }
 });
