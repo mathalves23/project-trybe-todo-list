@@ -1,28 +1,32 @@
-const inputText = document.querySelector('#texto-tarefa'); // Input
-const button = document.querySelector('#criar-tarefa'); // Botão
-const listaTarefas = document.querySelector('#lista-tarefas'); // ol
+const inputText = document.querySelector('#texto-tarefa');
+const button = document.querySelector('#criar-tarefa');
+const listaTarefas = document.querySelector('#lista-tarefas');
+const apagaTudo = document.getElementById('apaga-tudo');
+// const btnRemoveFinalizados = document.querySelector('#remover-finalizados');
+// const salvar = document.querySelector('#salvar-tarefas');
 
-button.addEventListener('click', function () {
-  // Adiciona elemento li na ol:
-  const array = inputText.value;
-  let listItem = document.createElement('li');
-  listItem.className = 'list-item';
-  listItem.appendChild(document.createTextNode(array));
-  listaTarefas.appendChild(listItem);
-  document.getElementById('texto-tarefa').value = '';
-  // Adiciona a cor cinza no selecionado:
-  const itemLista = document.querySelectorAll('li');
-  for (index = 0; index < itemLista.length; index += 1){
-    itemLista[index].addEventListener('click', function () {
-      listItem.className = 'selected';
-    });
+// função adiciona item na lista
+function addItem() {
+  const newElement = document.createElement('li');
+  newElement.innerText = inputText.value;
+  newElement.className = 'selected';
+  listaTarefas.appendChild(newElement);
+  inputText.value = '';
+}; // Source: https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript
+button.addEventListener('click', addItem);
+
+// função adiciona cor no item selecionado
+function selectItem(event) {
+  for (let i = 0; i < listaTarefas.children.length; i += 1) {
+    listaTarefas.children[i].style.backgroundColor = 'white';
   }
-  // Seleciona apenas um:
-});
-// Source: https://stackoverflow.com/questions/17773938/add-a-list-item-through-javascript
+  if (event.target.className === 'selected' || event.target.className === 'completed') {
+    event.target.style.backgroundColor = 'rgb(128,128,128)';
+  }
+}
+listaTarefas.addEventListener('click', selectItem);
 
 // Botão Apaga tudo:
-let apagaTudo = document.querySelector('#apaga-tudo');
- apagaTudo.addEventListener('click', function () {
-   listaTarefas.innerHTML = '';
- });
+apagaTudo.addEventListener('click', function () {
+  listaTarefas.innerHTML = '';
+});
